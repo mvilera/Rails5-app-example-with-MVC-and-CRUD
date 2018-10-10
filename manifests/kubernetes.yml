@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: primary
-        image: index.docker.io/lwander/spin-kub-v2-demo
+        image: gcr.io/autingo-159109/application-test
         ports:
         - containerPort: 3000
         readinessProbe:
