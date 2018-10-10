@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: application-demo-config
+  namespace: default
+data:
+  NEW_FEATURE: "true"
+
+---
+
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: application-demo
+  namespace: default
+  labels:
+    source: demo
+    stack: frontend
+    app: application
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      source: demo
+      app: application
+  template:
+    metadata:
+      labels:
+        source: demo
+        app: application
+    spec:
+      containers:
+      - name: primary
+        image: index.docker.io/lwander/spin-kub-v2-demo
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+        envFrom:
+        - configMapRef:
+            name: application-demo-config
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: application-demo
+  namespace: default
+spec:
+  selector:
+    source: demo
+    app: application
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
