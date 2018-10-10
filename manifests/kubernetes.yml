@@ -14,19 +14,19 @@ metadata:
   name: application-demo
   namespace: default
   labels:
-    source: demo1
+    source: demo
     stack: frontend
     app: application
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
-      source: demo1
+      source: demo
       app: application
   template:
     metadata:
       labels:
-        source: demo1
+        source: demo
         app: application
     spec:
       containers:
@@ -51,7 +51,7 @@ metadata:
   namespace: default
 spec:
   selector:
-    source: demo1
+    source: demo
     app: application
   ports:
   - protocol: TCP
