@@ -1,32 +1,28 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: application-demo-config
-  namespace: default
-data:
-  NEW_FEATURE: "true"
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: application-demo-config
+#   namespace: default
+# data:
+#   NEW_FEATURE: "true"
 
----
-
+# ---
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: application-demo
   namespace: default
   labels:
-    source: demo
     stack: frontend
     app: application
 spec:
   replicas: 3
   selector:
     matchLabels:
-      source: demo
       app: application
   template:
     metadata:
       labels:
-        source: demo
         app: application
     spec:
       containers:
@@ -34,13 +30,13 @@ spec:
         image: gcr.io/autingo-159109/rnr-app
         ports:
         - containerPort: 3000
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 3000
-        envFrom:
-        - configMapRef:
-            name: application-demo-config
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 3000
+        # envFrom:
+        # - configMapRef:
+        #     name: application-demo-config
 
 ---
 
@@ -51,7 +47,6 @@ metadata:
   namespace: default
 spec:
   selector:
-    source: demo
     app: application
   ports:
   - protocol: TCP
