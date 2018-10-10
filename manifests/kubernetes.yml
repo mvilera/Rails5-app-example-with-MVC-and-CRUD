@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: primary
-        image: gcr.io/autingo-159109/application-test
+        image: gcr.io/autingo-159109/rnr-app
         ports:
         - containerPort: 3000
         readinessProbe:
