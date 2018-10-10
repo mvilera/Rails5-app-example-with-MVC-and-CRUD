@@ -16,7 +16,7 @@ metadata:
     stack: frontend
     app: application
 spec:
-  replicas: 4
+  replicas: 5
   selector:
     matchLabels:
       app: application
