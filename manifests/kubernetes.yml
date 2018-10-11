@@ -37,9 +37,7 @@ spec:
         # envFrom:
         # - configMapRef:
         #     name: application-demo-config
-      imagePullSecrets:
-      - name: gcrcredentials
-
+        
 ---
 
 kind: Service
