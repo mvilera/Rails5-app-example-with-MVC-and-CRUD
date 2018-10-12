@@ -1,6 +1,4 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/rnr-app:$TAG_NAME', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/$PROJECT_ID/rnr-app:latest', '.']
 images: ['gcr.io/$PROJECT_ID/rnr-app:$TAG_NAME']
